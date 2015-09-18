@@ -38,8 +38,8 @@ public class BibliotecaApp {
 
     private static void printLoanedBooks() {
         System.out.println("Loaned Books:\n");
-        for (Book book : library.getLoanedBookes()) {
-            System.out.println(library.getLoanedBookes().indexOf(book) + ": " + book);
+        for (Book book : library.getLoanedBooks()) {
+            System.out.println(library.getLoanedBooks().indexOf(book) + ": " + book);
         }
     }
 
@@ -64,7 +64,7 @@ public class BibliotecaApp {
         System.out.println("\nEnter the number of the book to be returned: ");
         int bookIndex = keyboard.nextInt();
         try {
-            library.getLoanedBookes().get(bookIndex).returnStock();
+            library.getLoanedBooks().get(bookIndex).returnStock();
             System.out.println("Thank you for returning the book.");
         } catch (StockNotOutException e) {
             System.out.println("That is not a valid book to return");

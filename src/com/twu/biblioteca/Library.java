@@ -17,6 +17,7 @@ public class Library {
      */
     public Library() {
         this.bookList = new ArrayList<Book>();
+        this.movieList = new ArrayList<Movie>();
     }
 
     /**
@@ -48,27 +49,53 @@ public class Library {
      * @return Every book that has not been checked out
      */
     public List<Book> getAvailableBooks(){
-        List<Book> availableBooks = new ArrayList<Book>();
-        for (Book book : this.getBooks()) {
-            if (book.isAvailable()) {
-                availableBooks.add(book);
-            }
-        }
-        return availableBooks;
+        return (List<Book>) searchByAvailability(bookList, true);
     }
 
     /**
      * Get all books that have been loaned out
      * @return Every book currently on loan
      */
-    public List<Book> getLoanedBookes() {
-        List<Book> loanedBooks = new ArrayList<Book>();
-        for (Book book : this.getBooks()) {
-            if (! book.isAvailable()) {
-                loanedBooks.add(book);
+    public List<Book> getLoanedBooks() {
+        return (List<Book>) searchByAvailability(bookList, false);
+    }
+
+    /**
+     * Get all available movies
+     * @return Every movie that has not been checked out
+     */
+    public List<Movie> getAvailableMovies() {
+        return (List<Movie>) searchByAvailability(movieList, true);
+    }
+
+    /**
+     * Get all movies that have been loaned out
+     * @return Every movie currently on loan
+     */
+    public List<Movie> getLoanedMovies() {
+        return (List<Movie>) searchByAvailability(movieList, false);
+    }
+
+    /**
+     * Get all of the movies in the library
+     * @return All movies
+     */
+    public List<Movie> getMovies() {
+        return this.movieList;
+    }
+
+    /**
+     * Return available or unavailable items from a list of library stock items
+     */
+    private List<?extends LibraryStock> searchByAvailability(List<?extends LibraryStock> list, boolean availability) {
+        List<LibraryStock> items = new ArrayList<LibraryStock>();
+
+        for (LibraryStock item : list) {
+            if (item.isAvailable() == availability) {
+                items.add(item);
             }
         }
-        return loanedBooks;
+        return items;
     }
 
 }

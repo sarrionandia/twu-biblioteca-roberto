@@ -6,8 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Tito on 18/09/2015.
@@ -21,17 +19,27 @@ public class LibraryTest {
     public void setUp(){
         library = new Library();
 
+        //Add books
         library.add(new Book("Pride and Prejudice", "Jane Austen", Year.of(1813)));
         library.add(new Book("To Kill a Mockingbird", "Harper Lee", Year.of(1960)));
         library.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", Year.of(1925)));
         library.add(new Book("Frankenstein", "Mary Shelley", Year.of(1818)));
 
+        //Add movies
+        library.add(new Movie("The Godfather", Year.of(1972), "Francis Ford Coppola", 9));
+        library.add(new Movie("The Shawshank Redemption", Year.of(1994), "Frank Darabont", 10));
+        library.add(new Movie("Sharktopus", Year.of(2010), "Declan O'Brien", 1));
+        library.add(new Movie("Scooby Doo", Year.of(2002), "Raja Gosnell", 0));
+
     }
 
     @Test
-    public void testConstructors(){
+    public void testConstructor(){
         assertEquals(4, library.getBooks().size());
         assertEquals(0, new Library().getBooks().size());
+        assertEquals(4, library.getMovies().size());
+        assertEquals(0, new Library().getMovies().size());
+
     }
 
     @Test
@@ -58,7 +66,7 @@ public class LibraryTest {
         }
 
         assertFalse("Checked out book should not be in available books", library.getAvailableBooks().contains(book));
-        assertTrue("Checked out book should be in loaned books", library.getLoanedBookes().contains(book));
+        assertTrue("Checked out book should be in loaned books", library.getLoanedBooks().contains(book));
 
         try {
             book.returnStock();
@@ -67,6 +75,6 @@ public class LibraryTest {
         }
 
         assertTrue("Returned book should be in available books", library.getAvailableBooks().contains(book));
-        assertFalse("Returned book should not be in loaned books", library.getLoanedBookes().contains(book));
+        assertFalse("Returned book should not be in loaned books", library.getLoanedBooks().contains(book));
     }
 }
