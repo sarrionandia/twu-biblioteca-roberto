@@ -47,6 +47,7 @@ public class BibliotecaApp {
         int bookIndex = keyboard.nextInt();
         try {
             library.getAvailableBooks().get(bookIndex).checkOut();
+            System.out.println("Thank you! Enjoy the book");
         } catch (BookNotAvailableException e){
             System.out.println("That book has already been checked out.");
         }
