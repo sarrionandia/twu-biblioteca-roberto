@@ -35,7 +35,7 @@ public class BookTest {
         assertTrue("Book should initially be available", book.isAvailable());
         try {
             book.checkOut();
-        } catch (BookNotAvailableException e) {
+        } catch (StockNotAvailableException e) {
             fail("Checking out the book for the first time should not throw exception");
         }
         assertFalse("Book should not be available after checkout", book.isAvailable());
@@ -48,7 +48,7 @@ public class BookTest {
             book.checkOut();
             book.checkOut();
             fail("Exception should have been thrown for double checkout");
-        } catch (BookNotAvailableException e) {
+        } catch (StockNotAvailableException e) {
 
         }
     }

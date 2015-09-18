@@ -7,7 +7,7 @@ import java.time.Year;
  *
  * Represents one movie
  */
-public class Movie {
+public class Movie  extends LibraryStock {
     private String name;
     private Year year;
     private String director;
@@ -35,12 +35,9 @@ public class Movie {
     public String toString() {
         String output;
 
-        String ratingString = "";
-        if (rating == 0) {
-            ratingString = "Unrated";
-        }
-        else {
-            ratingString = String.format("%d/10", rating);
+        String ratingString = "Unrated";
+        if (rating > 0 && rating <= 10) {
+            ratingString = String.format("%d/10", rating);;
         }
 
         output = String.format("%s %s. (%s) %s",

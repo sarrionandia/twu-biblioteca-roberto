@@ -7,11 +7,10 @@ import java.time.Year;
  *
  * Represents a book for the Biblioteca app
  */
-public class Book {
+public class Book extends LibraryStock {
     private String title;
     private String author;
     private Year yearPublished;
-    private Boolean available;
 
     /**
      * Constructor for Book
@@ -35,39 +34,5 @@ public class Book {
         output.append(yearPublished);
         output.append("]");
         return output.toString();
-    }
-
-    /**
-     * Check whether or not a book is available or checked out
-     * @return True if available, False if checked out
-     */
-    public Boolean isAvailable() {
-        return available;
-    }
-
-    /**
-     * Check out the book
-     * @throws BookNotAvailableException If book is already checked out
-     */
-    public void checkOut() throws BookNotAvailableException {
-        if (!this.available) {
-            throw new BookNotAvailableException();
-        }
-        else {
-            this.available = false;
-        }
-    }
-
-    /**
-     * Return a book that has been checked out
-     * @throws BookNotOutException If a book has not yet been checked out
-     */
-    public void returnBook() throws BookNotOutException {
-        if (this.available) {
-            throw new BookNotOutException();
-        }
-        else {
-            this.available = true;
-        }
     }
 }

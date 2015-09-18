@@ -19,13 +19,13 @@ public class LibraryTest {
 
     @Before
     public void setUp(){
-        List<Book> bookList = new ArrayList<Book>();
-        bookList.add(new Book("Pride and Prejudice", "Jane Austen", Year.of(1813)));
-        bookList.add(new Book("To Kill a Mockingbird", "Harper Lee", Year.of(1960)));
-        bookList.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", Year.of(1925)));
-        bookList.add(new Book("Frankenstein", "Mary Shelley", Year.of(1818)));
+        library = new Library();
 
-        library = new Library(bookList);
+        library.add(new Book("Pride and Prejudice", "Jane Austen", Year.of(1813)));
+        library.add(new Book("To Kill a Mockingbird", "Harper Lee", Year.of(1960)));
+        library.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", Year.of(1925)));
+        library.add(new Book("Frankenstein", "Mary Shelley", Year.of(1818)));
+
     }
 
     @Test
@@ -42,7 +42,7 @@ public class LibraryTest {
 
             //After one book has been checked out the size of the list should be 1 smaller
             assertEquals(nBooks-1, library.getAvailableBooks().size());
-        } catch (BookNotAvailableException e) {
+        } catch (StockNotAvailableException e) {
             fail("Book should not initially be checked out");
         }
     }
@@ -53,7 +53,7 @@ public class LibraryTest {
 
         try {
             book.checkOut();
-        } catch (BookNotAvailableException e) {
+        } catch (StockNotAvailableException e) {
             fail(e.getMessage());
         }
 
@@ -61,8 +61,8 @@ public class LibraryTest {
         assertTrue("Checked out book should be in loaned books", library.getLoanedBookes().contains(book));
 
         try {
-            book.returnBook();
-        } catch (BookNotOutException e) {
+            book.returnStock();
+        } catch (StockNotOutException e) {
             fail(e.getMessage());
         }
 

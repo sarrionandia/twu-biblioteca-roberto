@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class Library {
     private List<Book> bookList;
+    private List<Movie> movieList;
 
     /**
      * Default constructor
@@ -19,12 +20,19 @@ public class Library {
     }
 
     /**
-     * Constructor with initial list of books
-     * @param initialBooks Books that the library should contain
+     * Add a book to the library
+     * @param book The book to be added
      */
-    public Library(List<Book> initialBooks) {
-        this.bookList = new ArrayList<Book>();
-        this.bookList.addAll(initialBooks);
+    public void add(Book book) {
+        bookList.add(book);
+    }
+
+    /**
+     * Add a movie to the library
+     * @param movie The movie to be added
+     */
+    public void add(Movie movie) {
+        movieList.add(movie);
     }
 
     /**

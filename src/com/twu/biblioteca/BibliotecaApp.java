@@ -1,25 +1,23 @@
 package com.twu.biblioteca;
 
 import java.time.Year;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.List;
 
 public class BibliotecaApp {
 
     private static final String WELCOME = "Welcome to Biblioteca!";
 
-    static List<Book> bookList = new ArrayList<Book>();
     static Library library;
     static Scanner keyboard = new Scanner(System.in);
 
-    private static void setupBookList() {
-        bookList.add(new Book("Pride and Prejudice", "Jane Austen", Year.of(1813)));
-        bookList.add(new Book("To Kill a Mockingbird", "Harper Lee", Year.of(1960)));
-        bookList.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", Year.of(1925)));
-        bookList.add(new Book("Frankenstein", "Mary Shelley", Year.of(1818)));
+    private static void setupLibrary() {
+        library = new Library();
 
-        library = new Library(bookList);
+        library.add(new Book("Pride and Prejudice", "Jane Austen", Year.of(1813)));
+        library.add(new Book("To Kill a Mockingbird", "Harper Lee", Year.of(1960)));
+        library.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", Year.of(1925)));
+        library.add(new Book("Frankenstein", "Mary Shelley", Year.of(1818)));
+
     }
 
     private static void printMenu() {
@@ -56,7 +54,7 @@ public class BibliotecaApp {
         try {
             library.getAvailableBooks().get(bookIndex).checkOut();
             System.out.println("Thank you! Enjoy the book");
-        } catch (BookNotAvailableException e) {
+        } catch (StockNotAvailableException e) {
             System.out.println("That book is not available.");
         }
     }
@@ -66,9 +64,9 @@ public class BibliotecaApp {
         System.out.println("\nEnter the number of the book to be returned: ");
         int bookIndex = keyboard.nextInt();
         try {
-            library.getLoanedBookes().get(bookIndex).returnBook();
+            library.getLoanedBookes().get(bookIndex).returnStock();
             System.out.println("Thank you for returning the book.");
-        } catch (BookNotOutException e) {
+        } catch (StockNotOutException e) {
             System.out.println("That is not a valid book to return");
         }
 
@@ -76,7 +74,7 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
 
-        setupBookList();
+        setupLibrary();
 
         // Display a welcome message
         System.out.println(WELCOME);
