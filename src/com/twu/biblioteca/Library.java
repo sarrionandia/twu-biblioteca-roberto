@@ -35,6 +35,20 @@ public class Library {
         return this.bookList;
     }
 
+    /**
+     * Get all available books
+     * @return Every book that has not been checked out
+     */
+    public List<Book> getAvailableBooks(){
+        List<Book> availableBooks = new ArrayList<Book>();
+        for (Book book : this.getBooks()) {
+            if (book.isAvailable()) {
+                availableBooks.add(book);
+            }
+        }
+        return availableBooks;
+    }
+
 
 
 }

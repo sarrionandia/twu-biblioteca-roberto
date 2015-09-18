@@ -11,6 +11,7 @@ public class BibliotecaApp {
 
     static List<Book> bookList = new ArrayList<Book>();
     static Library library;
+    static Scanner keyboard = new Scanner(System.in);
 
     private static void setupBookList(){
         bookList.add(new Book("Pride and Prejudice", "Jane Austen", Year.of(1813)));
@@ -24,13 +25,14 @@ public class BibliotecaApp {
     private static void printMenu() {
         System.out.println("Options Available: ");
         System.out.println("   L - List all books");
+        System.out.println("   C - Checkout a book");
         System.out.println("   Q - Quit");
     }
 
-    private static void printAllBooks() {
-        System.out.println("All Books:\n");
-        for (Book book : library.getBooks()) {
-            System.out.println(book);
+    private static void printAvailableBooks() {
+        System.out.println("Available Books:\n");
+        for (Book book : library.getAvailableBooks()) {
+            System.out.println(library.getAvailableBooks().indexOf(book) + ": " + book);
         }
 
     }
@@ -38,6 +40,16 @@ public class BibliotecaApp {
     private static void quit() {
         System.out.println("Quitting Biblioteca");
         System.exit(0);
+    }
+
+    private static void checkout() {
+        System.out.println("Enter the number of the book you would like to check out: ");
+        int bookIndex = keyboard.nextInt();
+        try {
+            library.getAvailableBooks().get(bookIndex).checkOut();
+        } catch (BookNotAvailableException e){
+            System.out.println("That book has already been checked out.");
+        }
     }
 
     public static void main(String[] args) {
@@ -48,7 +60,6 @@ public class BibliotecaApp {
         System.out.println(WELCOME);
 
         String input;
-        Scanner keyboard = new Scanner(System.in);
 
         // Display the menu repeatedly
         while (true) {
@@ -56,7 +67,9 @@ public class BibliotecaApp {
             System.out.print("Enter Option: ");
             input = keyboard.next();
 
-            if (input.toUpperCase().equals("L")) {printAllBooks();}
+            if (input.toUpperCase().equals("L")) {
+                printAvailableBooks();}
+            else if (input.toUpperCase().equals("C")) {checkout();}
             else if (input.toUpperCase().equals("Q")) {quit();}
 
             else {System.out.println("Invalid menu option.");}

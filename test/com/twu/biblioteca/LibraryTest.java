@@ -30,7 +30,20 @@ public class LibraryTest {
 
     @Test
     public void testConstructors(){
-        assertEquals (4, library.getBooks().size());
+        assertEquals(4, library.getBooks().size());
         assertEquals(0, new Library().getBooks().size());
+    }
+
+    @Test
+    public void testAvailableBooks(){
+        int nBooks = library.getBooks().size();
+        try {
+            library.getBooks().get(0).checkOut();
+
+            //After one book has been checked out the size of the list should be 1 smaller
+            assertEquals(nBooks-1, library.getAvailableBooks().size());
+        } catch (BookNotAvailableException e) {
+            fail("Book should not initially be checked out");
+        }
     }
 }
