@@ -57,4 +57,17 @@ public class Book {
             this.available = false;
         }
     }
+
+    /**
+     * Return a book that has been checked out
+     * @throws BookNotOutException If a book has not yet been checked out
+     */
+    public void returnBook() throws BookNotOutException {
+        if (this.available) {
+            throw new BookNotOutException();
+        }
+        else {
+            this.available = true;
+        }
+    }
 }

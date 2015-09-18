@@ -46,4 +46,27 @@ public class LibraryTest {
             fail("Book should not initially be checked out");
         }
     }
+
+    @Test
+    public void testCheckoutReturn() {
+        Book book = library.getBooks().get(0);
+
+        try {
+            book.checkOut();
+        } catch (BookNotAvailableException e) {
+            fail(e.getMessage());
+        }
+
+        assertFalse("Checked out book should not be in available books", library.getAvailableBooks().contains(book));
+        assertTrue("Checked out book should be in loaned books", library.getLoanedBookes().contains(book));
+
+        try {
+            book.returnBook();
+        } catch (BookNotOutException e) {
+            fail(e.getMessage());
+        }
+
+        assertTrue("Returned book should be in available books", library.getAvailableBooks().contains(book));
+        assertFalse("Returned book should not be in loaned books", library.getLoanedBookes().contains(book));
+    }
 }

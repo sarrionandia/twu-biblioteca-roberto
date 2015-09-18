@@ -49,6 +49,20 @@ public class Library {
         return availableBooks;
     }
 
+    /**
+     * Get all books that have been loaned out
+     * @return Every book currently on loan
+     */
+    public List<Book> getLoanedBookes() {
+        List<Book> loanedBooks = new ArrayList<Book>();
+        for (Book book : this.getBooks()) {
+            if (! book.isAvailable()) {
+                loanedBooks.add(book);
+            }
+        }
+        return loanedBooks;
+    }
+
 
 
 }
