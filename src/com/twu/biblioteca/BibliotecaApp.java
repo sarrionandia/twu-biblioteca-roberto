@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import java.time.Year;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.List;
 
 public class BibliotecaApp {
@@ -21,6 +21,19 @@ public class BibliotecaApp {
         library = new Library(bookList);
     }
 
+    private static void printMenu() {
+        System.out.println("Options Available: ");
+        System.out.println("   L - List all books");
+    }
+
+    private static void printAllBooks() {
+        System.out.println("All Books:\n");
+        for (Book book : library.getBooks()) {
+            System.out.println(book);
+        }
+
+    }
+
     public static void main(String[] args) {
 
         setupBookList();
@@ -28,10 +41,18 @@ public class BibliotecaApp {
         // Display a welcome message
         System.out.println(WELCOME);
 
-        //Print the list of books
-        for (Book book : library.getBooks()) {
-            System.out.println(book);
+        String input;
+        Scanner keyboard = new Scanner(System.in);
+
+        // Display the menu repeatedly
+        while (true) {
+            printMenu();
+            System.out.print("Enter Option: ");
+            input = keyboard.next();
+
+            if (input.toUpperCase().equals("L")) {printAllBooks();}
         }
+
 
 
     }
