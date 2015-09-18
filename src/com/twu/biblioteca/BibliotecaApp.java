@@ -26,6 +26,7 @@ public class BibliotecaApp {
         System.out.println("Options Available: ");
         System.out.println("   L - List all books");
         System.out.println("   C - Checkout a book");
+        System.out.println("   R - Return a book");
         System.out.println("   Q - Quit");
     }
 
@@ -35,6 +36,13 @@ public class BibliotecaApp {
             System.out.println(library.getAvailableBooks().indexOf(book) + ": " + book);
         }
 
+    }
+
+    private static void printLoanedBooks() {
+        System.out.println("Loaned Books:\n");
+        for (Book book: library.getLoanedBookes()) {
+            System.out.println(library.getLoanedBookes().indexOf(book) + ": " + book);
+        }
     }
 
     private static void quit() {
@@ -53,6 +61,18 @@ public class BibliotecaApp {
         }
     }
 
+    private static void returnBook() {
+        printLoanedBooks();
+        System.out.println("\nEnter the number of the book to be returned: ");
+        int bookIndex = keyboard.nextInt();
+        try {
+            library.getLoanedBookes().get(bookIndex).returnBook();
+            System.out.println("Thank you for returning the book.");
+        } catch (BookNotOutException e) {
+            System.out.println("That is not a valid book to return");
+        }
+
+    }
     public static void main(String[] args) {
 
         setupBookList();
@@ -71,6 +91,7 @@ public class BibliotecaApp {
             if (input.toUpperCase().equals("L")) {
                 printAvailableBooks();}
             else if (input.toUpperCase().equals("C")) {checkout();}
+            else if (input.toUpperCase().equals("R")) {returnBook();}
             else if (input.toUpperCase().equals("Q")) {quit();}
 
             else {System.out.println("Invalid menu option.");}
