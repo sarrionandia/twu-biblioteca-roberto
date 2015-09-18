@@ -11,6 +11,7 @@ public class Book {
     private String title;
     private String author;
     private Year yearPublished;
+    private Boolean available;
 
     /**
      * Constructor for Book
@@ -22,6 +23,7 @@ public class Book {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
+        this.available = true;
     }
 
     public String toString() {
@@ -33,5 +35,26 @@ public class Book {
         output.append(yearPublished);
         output.append("]");
         return output.toString();
+    }
+
+    /**
+     * Check whether or not a book is available or checked out
+     * @return True if available, False if checked out
+     */
+    public Boolean isAvailable() {
+        return available;
+    }
+
+    /**
+     * Check out the book
+     * @throws BookNotAvailableException If book is already checked out
+     */
+    public void checkOut() throws BookNotAvailableException {
+        if (!this.available) {
+            throw new BookNotAvailableException();
+        }
+        else {
+            this.available = false;
+        }
     }
 }
