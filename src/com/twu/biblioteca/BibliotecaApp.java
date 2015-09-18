@@ -51,6 +51,8 @@ public class BibliotecaApp {
             input = keyboard.next();
 
             if (input.toUpperCase().equals("L")) {printAllBooks();}
+            
+            else {System.out.println("Invalid menu option.");}
         }
 
 
