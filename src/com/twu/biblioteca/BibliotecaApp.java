@@ -24,6 +24,7 @@ public class BibliotecaApp {
     private static void printMenu() {
         System.out.println("Options Available: ");
         System.out.println("   L - List all books");
+        System.out.println("   Q - Quit");
     }
 
     private static void printAllBooks() {
@@ -32,6 +33,11 @@ public class BibliotecaApp {
             System.out.println(book);
         }
 
+    }
+
+    private static void quit() {
+        System.out.println("Quitting Biblioteca");
+        System.exit(0);
     }
 
     public static void main(String[] args) {
@@ -51,7 +57,8 @@ public class BibliotecaApp {
             input = keyboard.next();
 
             if (input.toUpperCase().equals("L")) {printAllBooks();}
-            
+            else if (input.toUpperCase().equals("Q")) {quit();}
+
             else {System.out.println("Invalid menu option.");}
         }
 
