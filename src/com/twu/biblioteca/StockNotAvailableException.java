@@ -7,6 +7,6 @@ package com.twu.biblioteca;
 public class StockNotAvailableException extends Exception {
 
     public StockNotAvailableException(){
-        super("This book has already been checked out");
+        super("This item has already been checked out");
     }
 }

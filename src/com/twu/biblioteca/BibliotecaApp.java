@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.time.Year;
+import java.util.List;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -18,11 +19,17 @@ public class BibliotecaApp {
         library.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", Year.of(1925)));
         library.add(new Book("Frankenstein", "Mary Shelley", Year.of(1818)));
 
+        library.add(new Movie("The Godfather", Year.of(1972), "Francis Ford Coppola", 9));
+        library.add(new Movie("The Shawshank Redemption", Year.of(1994), "Frank Darabont", 10));
+        library.add(new Movie("Sharktopus", Year.of(2010), "Declan O'Brien", 1));
+        library.add(new Movie("Scooby Doo", Year.of(2002), "Raja Gosnell", 0));
+
     }
 
     private static void printMenu() {
         System.out.println("Options Available: ");
         System.out.println("   L - List all books");
+        System.out.println("   M - List all movies");
         System.out.println("   C - Checkout a book");
         System.out.println("   R - Return a book");
         System.out.println("   Q - Quit");
@@ -30,22 +37,29 @@ public class BibliotecaApp {
 
     private static void printAvailableBooks() {
         System.out.println("Available Books:\n");
-        for (Book book : library.getAvailableBooks()) {
-            System.out.println(library.getAvailableBooks().indexOf(book) + ": " + book);
-        }
+        printList(library.getAvailableBooks());
 
     }
 
     private static void printLoanedBooks() {
         System.out.println("Loaned Books:\n");
-        for (Book book : library.getLoanedBooks()) {
-            System.out.println(library.getLoanedBooks().indexOf(book) + ": " + book);
-        }
+        printList(library.getLoanedBooks());
+    }
+
+    private static void printAvailableMovies() {
+        System.out.println("Available Movies: \n");
+        printList(library.getAvailableMovies());
     }
 
     private static void quit() {
         System.out.println("Quitting Biblioteca");
         System.exit(0);
+    }
+
+    private static void printList(List<?extends LibraryStock> list) {
+        for (LibraryStock stock : list) {
+            System.out.println(list.indexOf(stock) + ": " + stock);
+        }
     }
 
     private static void checkout() {
@@ -92,6 +106,8 @@ public class BibliotecaApp {
                 checkout();
             } else if (input.toUpperCase().equals("R")) {
                 returnBook();
+            } else if (input.toUpperCase().equals("M")) {
+                printAvailableMovies();
             } else {
                 System.out.println("Invalid menu option.");
             }

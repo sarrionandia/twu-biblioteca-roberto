@@ -76,5 +76,26 @@ public class LibraryTest {
 
         assertTrue("Returned book should be in available books", library.getAvailableBooks().contains(book));
         assertFalse("Returned book should not be in loaned books", library.getLoanedBooks().contains(book));
+
+        Movie movie = library.getMovies().get(0);
+        try {
+            movie.checkOut();
+        } catch (StockNotAvailableException e) {
+            fail(e.getMessage());
+        }
+
+        assertFalse("Checked out movie should not be in available movies", library.getAvailableMovies().contains(movie));
+        assertTrue("Checked out movie should be in loaned movies", library.getLoanedMovies().contains(movie));
+
+        try {
+            movie.returnStock();
+        } catch (StockNotOutException e) {
+            fail(e.getMessage());
+        }
+
+        assertTrue("Returned movie should be in available movies", library.getAvailableMovies().contains(movie));
+        assertFalse("Returned movie should not be in loaned movies", library.getLoanedMovies().contains(movie));
+
+
     }
 }

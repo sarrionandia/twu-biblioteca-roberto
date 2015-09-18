@@ -30,6 +30,7 @@ public class Movie  extends LibraryStock {
         this.year = year;
         this.director = director;
         this.rating = rating;
+        this.available = true;
     }
 
     public String toString() {
@@ -37,7 +38,7 @@ public class Movie  extends LibraryStock {
 
         String ratingString = "Unrated";
         if (rating > 0 && rating <= 10) {
-            ratingString = String.format("%d/10", rating);;
+            ratingString = String.format("%d/10", rating);
         }
 
         output = String.format("%s %s. (%s) %s",
