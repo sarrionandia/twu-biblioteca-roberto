@@ -28,11 +28,12 @@ public class BibliotecaApp {
 
     private static void printMenu() {
         System.out.println("Options Available: ");
-        System.out.println("   L - List all books");
-        System.out.println("   M - List all movies");
-        System.out.println("   C - Checkout a book");
-        System.out.println("   R - Return a book");
-        System.out.println("   Q - Quit");
+        System.out.println("   B  - List all books");
+        System.out.println("   M  - List all movies");
+        System.out.println("   CB - Checkout a book");
+        System.out.println("   CM - Checkout a movie");
+        System.out.println("   RB  - Return a book");
+        System.out.println("   Q  - Quit");
     }
 
     private static void printAvailableBooks() {
@@ -62,7 +63,8 @@ public class BibliotecaApp {
         }
     }
 
-    private static void checkout() {
+    private static void checkoutBook() {
+        printAvailableBooks();
         System.out.println("Enter the number of the book you would like to check out: ");
         int bookIndex = keyboard.nextInt();
         try {
@@ -70,6 +72,18 @@ public class BibliotecaApp {
             System.out.println("Thank you! Enjoy the book");
         } catch (StockNotAvailableException e) {
             System.out.println("That book is not available.");
+        }
+    }
+
+    private static void checkoutMovie() {
+        printAvailableMovies();
+        System.out.println("Enter the number of the movie you would like to check out: ");
+        int movieIndex = keyboard.nextInt();
+        try {
+            library.getAvailableMovies().get(movieIndex).checkOut();
+            System.out.println("Thank you! Enjoy the movie");
+        } catch (StockNotAvailableException e) {
+            System.out.println("That movie is not available");
         }
     }
 
@@ -95,20 +109,22 @@ public class BibliotecaApp {
 
         String input = "";
         // Display the menu repeatedly
-        while (! input.toUpperCase().equals("Q")) {
+        while (! input.equals("Q")) {
             printMenu();
             System.out.print("Enter Option: ");
-            input = keyboard.next();
+            input = keyboard.next().toUpperCase();
 
-            if (input.toUpperCase().equals("L")) {
+            if (input.toUpperCase().equals("B")) {
                 printAvailableBooks();
-            } else if (input.toUpperCase().equals("C")) {
-                checkout();
-            } else if (input.toUpperCase().equals("R")) {
+            } else if (input.equals("CB")) {
+                checkoutBook();
+            } else if (input.equals("CM")) {
+                checkoutMovie();
+            } else if (input.equals("RB")) {
                 returnBook();
-            } else if (input.toUpperCase().equals("M")) {
+            } else if (input.equals("M")) {
                 printAvailableMovies();
-            } else {
+            } else if (! input.equals("Q")) {
                 System.out.println("Invalid menu option.");
             }
         }
