@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.time.Year;
 
 /**
  * Created by Tito on 18/09/2015.
@@ -10,7 +9,7 @@ import java.time.Year;
 public class Book extends LibraryStock {
     private String title;
     private String author;
-    private Year yearPublished;
+    private int yearPublished;
 
     /**
      * Constructor for Book
@@ -18,7 +17,7 @@ public class Book extends LibraryStock {
      * @param author The author of the Book, e.g. "Lewis Carrol"
      * @param yearPublished The year in which the book was published
      */
-    public Book (String title, String author, Year yearPublished) {
+    public Book (String title, String author, int yearPublished) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;

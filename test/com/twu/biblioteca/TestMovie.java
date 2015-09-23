@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.Year;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +18,7 @@ public class TestMovie {
     @Before
     public void setup() {
         try{
-            movie = new Movie("Titanic", Year.of(1996), "James Cameron", 7);
+            movie = new Movie("Titanic", 1996, "James Cameron", 7);
         } catch (IllegalArgumentException e) {
             fail(e.getMessage());
         }
@@ -28,7 +27,7 @@ public class TestMovie {
     @Test
     public void testConstructorException() {
         try {
-            Movie movie = new Movie("Titanic", Year.of(1996), "James Cameron", 14);
+            Movie movie = new Movie("Titanic", 1996, "James Cameron", 14);
             fail("Rating out of bounds should throw exception");
         } catch (IllegalArgumentException e) {
         }

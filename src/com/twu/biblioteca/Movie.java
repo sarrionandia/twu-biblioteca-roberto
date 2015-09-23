@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.time.Year;
 
 /**
  * Created by Tito on 18/09/2015.
@@ -9,7 +8,7 @@ import java.time.Year;
  */
 public class Movie  extends LibraryStock {
     private String name;
-    private Year year;
+    private int year;
     private String director;
     private int rating;
 
@@ -20,7 +19,7 @@ public class Movie  extends LibraryStock {
      * @param director The director of the movie
      * @param rating The rating of the movie, or 0 for unrated
      */
-    public Movie(String name, Year year, String director, int rating) throws IllegalArgumentException{
+    public Movie(String name, int year, String director, int rating) throws IllegalArgumentException{
 
         if (rating <0 || rating > 10) {
             throw new IllegalArgumentException("Rating must be between 0 and 10");

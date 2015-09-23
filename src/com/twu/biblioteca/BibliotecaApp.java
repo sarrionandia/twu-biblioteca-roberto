@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.time.Year;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,15 +13,15 @@ public class BibliotecaApp {
     private static void setupLibrary() {
         library = new Library();
 
-        library.add(new Book("Pride and Prejudice", "Jane Austen", Year.of(1813)));
-        library.add(new Book("To Kill a Mockingbird", "Harper Lee", Year.of(1960)));
-        library.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", Year.of(1925)));
-        library.add(new Book("Frankenstein", "Mary Shelley", Year.of(1818)));
+        library.add(new Book("Pride and Prejudice", "Jane Austen", 1813));
+        library.add(new Book("To Kill a Mockingbird", "Harper Lee", 1960));
+        library.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1922));
+        library.add(new Book("Frankenstein", "Mary Shelley", 1818));
 
-        library.add(new Movie("The Godfather", Year.of(1972), "Francis Ford Coppola", 9));
-        library.add(new Movie("The Shawshank Redemption", Year.of(1994), "Frank Darabont", 10));
-        library.add(new Movie("Sharktopus", Year.of(2010), "Declan O'Brien", 1));
-        library.add(new Movie("Scooby Doo", Year.of(2002), "Raja Gosnell", 0));
+        library.add(new Movie("The Godfather", 1972, "Francis Ford Coppola", 9));
+        library.add(new Movie("The Shawshank Redemption", 1994, "Frank Darabont", 10));
+        library.add(new Movie("Sharktopus", 2006, "Declan O'Brien", 1));
+        library.add(new Movie("Scooby Doo", 2002, "Raja Gosnell", 0));
 
     }
 

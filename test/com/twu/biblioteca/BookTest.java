@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import java.time.Year;
 
 /**
  * Created by Tito on 18/09/2015.
@@ -15,7 +14,7 @@ public class BookTest {
 
     String TITLE = "The Death and Life of Great American Cities";
     String AUTHOR = "Jane Jacobs";
-    Year YEAR = Year.of(1961);
+    int YEAR = 1961;
 
     private Book book;
 
