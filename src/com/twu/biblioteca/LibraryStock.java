@@ -6,26 +6,26 @@ package com.twu.biblioteca;
  */
 public abstract class LibraryStock {
 
-    protected boolean available;
+    protected User loanedTo;
 
     /**
      * Check whether or not a book is available or checked out
      * @return True if available, False if checked out
      */
     public Boolean isAvailable() {
-        return available;
+        return (loanedTo == null);
     }
 
     /**
      * Check out the stock
      * @throws StockNotAvailableException If book is already checked out
      */
-    public void checkOut() throws StockNotAvailableException {
-        if (!this.available) {
-            throw new StockNotAvailableException();
+    public void checkOut(User user) throws StockNotAvailableException {
+        if (this.isAvailable()) {
+            this.loanedTo = user;
         }
         else {
-            this.available = false;
+            throw new StockNotAvailableException();
         }
     }
 
@@ -34,13 +34,16 @@ public abstract class LibraryStock {
      * @throws StockNotOutException If a book has not yet been checked out
      */
     public void returnStock() throws StockNotOutException {
-        if (this.available) {
+        if (this.isAvailable()) {
             throw new StockNotOutException();
         }
         else {
-            this.available = true;
+            this.loanedTo = null;
         }
     }
 
 
+    public User loanedTo() {
+        return this.loanedTo;
+    }
 }

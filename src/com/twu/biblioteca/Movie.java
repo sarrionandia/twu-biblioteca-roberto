@@ -29,7 +29,6 @@ public class Movie  extends LibraryStock {
         this.year = year;
         this.director = director;
         this.rating = rating;
-        this.available = true;
     }
 
     public String toString() {

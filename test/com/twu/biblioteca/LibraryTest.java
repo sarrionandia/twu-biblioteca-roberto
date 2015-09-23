@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class LibraryTest {
 
     private Library library;
+    private User user;
 
     @Before
     public void setUp(){
@@ -28,6 +29,9 @@ public class LibraryTest {
         library.add(new Movie("Sharktopus", 2006, "Declan O'Brien", 1));
         library.add(new Movie("Scooby Doo", 2002, "Raja Gosnell", 0));
 
+        user = new User("123-4567", "password");
+        UserRegistry.getInstance().addUser(user);
+
     }
 
     @Test
@@ -43,7 +47,7 @@ public class LibraryTest {
     public void testAvailableBooks(){
         int nBooks = library.getBooks().size();
         try {
-            library.getBooks().get(0).checkOut();
+            library.getBooks().get(0).checkOut(user);
 
             //After one book has been checked out the size of the list should be 1 smaller
             assertEquals(nBooks-1, library.getAvailableBooks().size());
@@ -57,7 +61,7 @@ public class LibraryTest {
         Book book = library.getBooks().get(0);
 
         try {
-            book.checkOut();
+            book.checkOut(user);
         } catch (StockNotAvailableException e) {
             fail(e.getMessage());
         }
@@ -76,7 +80,7 @@ public class LibraryTest {
 
         Movie movie = library.getMovies().get(0);
         try {
-            movie.checkOut();
+            movie.checkOut(user);
         } catch (StockNotAvailableException e) {
             fail(e.getMessage());
         }

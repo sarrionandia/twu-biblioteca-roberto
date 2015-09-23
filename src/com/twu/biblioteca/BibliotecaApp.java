@@ -9,6 +9,7 @@ public class BibliotecaApp {
 
     static Library library;
     static Scanner keyboard = new Scanner(System.in);
+    static User currentUser;
 
     private static void setupLibrary() {
         library = new Library();
@@ -67,7 +68,7 @@ public class BibliotecaApp {
         System.out.println("Enter the number of the book you would like to check out: ");
         int bookIndex = keyboard.nextInt();
         try {
-            library.getAvailableBooks().get(bookIndex).checkOut();
+            library.getAvailableBooks().get(bookIndex).checkOut(currentUser);
             System.out.println("Thank you! Enjoy the book");
         } catch (StockNotAvailableException e) {
             System.out.println("That book is not available.");
@@ -79,7 +80,7 @@ public class BibliotecaApp {
         System.out.println("Enter the number of the movie you would like to check out: ");
         int movieIndex = keyboard.nextInt();
         try {
-            library.getAvailableMovies().get(movieIndex).checkOut();
+            library.getAvailableMovies().get(movieIndex).checkOut(currentUser);
             System.out.println("Thank you! Enjoy the movie");
         } catch (StockNotAvailableException e) {
             System.out.println("That movie is not available");

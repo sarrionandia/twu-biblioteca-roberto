@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Tito on 18/09/2015.
@@ -13,7 +10,8 @@ import java.util.Set;
 public class Library {
     private List<Book> bookList;
     private List<Movie> movieList;
-    private Set<User> userSet;
+    private HashMap<String, User> users;
+    private User currentUser;
 
     /**
      * Default constructor
@@ -21,16 +19,10 @@ public class Library {
     public Library() {
         this.bookList = new ArrayList<Book>();
         this.movieList = new ArrayList<Movie>();
-        this.userSet = new HashSet<User>();
+        this.users = new HashMap<String, User>();
+        this.currentUser = null;
     }
 
-    /**
-     *Add a user to the library
-     * @param user The user to be added
-     */
-    public void addUser(User user) {
-        this.userSet.add(user);
-    }
 
     /**
      * Add a book to the library
@@ -40,6 +32,13 @@ public class Library {
         bookList.add(book);
     }
 
+    /**
+     * Get the user who is currently signed in
+     * @return The user who is currently signed in
+     */
+    public User getCurrentUser() {
+        return currentUser;
+    }
     /**
      * Add a movie to the library
      * @param movie The movie to be added

@@ -29,13 +29,11 @@ public class User {
     }
 
     /**
-     * Check a password against the user's password
-     * @param password The password to check
-     * @return Whether or not the password is correct
+     * Get the password of the user
+     * @return The password
      */
-    public boolean checkPassword(String password) {
-        return password.equals(this.password);
+    public String getPassword() {
+        return this.password;
     }
-
 
 }

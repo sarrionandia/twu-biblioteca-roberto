@@ -21,7 +21,6 @@ public class Book extends LibraryStock {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
-        this.available = true;
     }
 
     public String toString() {

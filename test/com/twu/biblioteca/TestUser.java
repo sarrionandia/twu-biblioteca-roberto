@@ -16,10 +16,11 @@ public class TestUser {
     @Before
     public void setup() {
         user = new User("342-5546", "CorrectHorseBatteryStaple");
+        UserRegistry.getInstance().addUser(user);
     }
 
     @Test
     public void testPassword() {
-        assertTrue("Password did not authenticate", user.checkPassword("CorrectHorseBatteryStaple"));
+        assertTrue("Password did not authenticate", UserRegistry.getInstance().authenticate(user));
     }
 }
