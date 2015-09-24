@@ -9,6 +9,20 @@ public class User {
 
     private String libraryNumber;
     private String password;
+    private boolean isLibrarian;
+
+    /**
+     * Constructor
+     * @param libraryNumber The library number of the suer
+     * @param password The password of the user
+     * @param isLibrarian Whether or not the user is a librarian
+     */
+    public User(String libraryNumber, String password, boolean isLibrarian) {
+        this.libraryNumber = libraryNumber;
+        this.password = password;
+        this.isLibrarian = isLibrarian;
+
+    }
 
     /**
      * Constructor
@@ -16,9 +30,9 @@ public class User {
      * @param password The password of the user
      */
     public User(String libraryNumber, String password) {
-        this.libraryNumber = libraryNumber;
-        this.password = password;
+        this(libraryNumber, password, false);
     }
+
 
     /**
      * Get the library number
@@ -35,5 +49,11 @@ public class User {
     public String getPassword() {
         return this.password;
     }
+
+    /**
+     * Check if the user is a librarian
+     * @return Whether or not the user is a librarian
+     */
+    public boolean isLibrarian() { return this.isLibrarian; }
 
 }

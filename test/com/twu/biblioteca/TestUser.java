@@ -35,4 +35,12 @@ public class TestUser {
         User badUser = new User("111-1111", user.getPassword());
         assertFalse(UserRegistry.getInstance().authenticate(badUser));
     }
+
+    @Test
+    public void testDefaultNotLibrarian() {
+        assertFalse(user.isLibrarian());
+
+        User librarian = new User("111-1111", "password", true);
+        assertTrue(librarian.isLibrarian());
+    }
 }
