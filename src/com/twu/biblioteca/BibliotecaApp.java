@@ -114,6 +114,11 @@ public class BibliotecaApp {
         // Display a welcome message
         System.out.println(WELCOME);
 
+        //Login
+        while (currentUser == null) {
+            login();
+        }
+
         String input = "";
         // Display the menu repeatedly
         while (! input.equals("Q")) {
@@ -136,5 +141,22 @@ public class BibliotecaApp {
             }
         }
         quit();
+    }
+
+    private static void login() {
+        System.out.println("Enter your library number:");
+        String libraryNumber = keyboard.next();
+
+        System.out.println("Enter your password:");
+        String password = keyboard.next();
+
+        User user = new User(libraryNumber, password);
+        if (UserRegistry.getInstance().authenticate(user)) {
+            currentUser = user;
+            System.out.println("Login successful");
+        }
+        else {
+            System.out.println("Login failed");
+        }
     }
 }
