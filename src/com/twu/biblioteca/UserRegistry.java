@@ -10,10 +10,10 @@ import java.util.HashMap;
 public class UserRegistry {
 
     private static UserRegistry instance;
-    private HashMap<String, String> users;
+    private HashMap<String, User> users;
 
     protected UserRegistry() {
-        users = new HashMap<String, String>();
+        users = new HashMap<String, User>();
     }
 
     public static UserRegistry getInstance() {
@@ -37,7 +37,11 @@ public class UserRegistry {
         }
 
         String password = user.getPassword();
-        return (users.get(libraryNumber).equals(password));
+        return (users.get(libraryNumber).getPassword().equals(password));
+    }
+
+    public boolean authenticateLibrarian(User user) {
+        return (users.containsKey(user.getLibraryNumber()) && users.get(user.getLibraryNumber()).isLibrarian());
     }
 
     /**
@@ -45,6 +49,6 @@ public class UserRegistry {
      * @param user The user to be added
      */
     public void addUser(User user) {
-        users.put(user.getLibraryNumber(), user.getPassword());
+        users.put(user.getLibraryNumber(), user);
     }
 }

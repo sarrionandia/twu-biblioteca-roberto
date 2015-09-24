@@ -56,4 +56,8 @@ public class User {
      */
     public boolean isLibrarian() { return this.isLibrarian; }
 
+    public String toString() {
+        return libraryNumber;
+    }
+
 }

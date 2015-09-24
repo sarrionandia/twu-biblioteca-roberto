@@ -26,6 +26,7 @@ public class BibliotecaApp {
 
         UserRegistry registry = UserRegistry.getInstance();
         registry.addUser((new User("123-4567", "password")));
+        registry.addUser((new User("111-1111", "password", true)));
 
     }
 
@@ -38,6 +39,10 @@ public class BibliotecaApp {
         System.out.println("   RB - Return a book");
         System.out.println("   L  - Logout");
         System.out.println("   Q  - Quit");
+
+        if (UserRegistry.getInstance().authenticateLibrarian(currentUser)) {
+            System.out.println("   WB - Who has checked out each book");
+        }
     }
 
     private static void printAvailableBooks() {
@@ -172,8 +177,18 @@ public class BibliotecaApp {
             logout();
         } else if (input.equals("Q")) {
             quit();
+        } else if (input.equals("WB") && UserRegistry.getInstance().authenticateLibrarian(currentUser)) {
+            whoHasBooks();
         } else {
             System.out.println("Invalid menu option");
+        }
+    }
+
+    private static void whoHasBooks() {
+        List<Book> loanedBooks = library.getLoanedBooks();
+
+        for (Book b : loanedBooks) {
+            System.out.println(b + " : " + b.loanedTo());
         }
     }
 }

@@ -10,7 +10,6 @@ import java.util.*;
 public class Library {
     private List<Book> bookList;
     private List<Movie> movieList;
-    private HashMap<String, User> users;
     private User currentUser;
 
     /**
@@ -19,7 +18,7 @@ public class Library {
     public Library() {
         this.bookList = new ArrayList<Book>();
         this.movieList = new ArrayList<Movie>();
-        this.users = new HashMap<String, User>();
+        HashMap<String, User> users = new HashMap<String, User>();
         this.currentUser = null;
     }
 
