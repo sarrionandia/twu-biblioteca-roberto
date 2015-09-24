@@ -42,6 +42,7 @@ public class BibliotecaApp {
 
         if (UserRegistry.getInstance().authenticateLibrarian(currentUser)) {
             System.out.println("   WB - Who has checked out each book");
+            System.out.println("   WM - Who has checked out each movie");
         }
     }
 
@@ -179,16 +180,22 @@ public class BibliotecaApp {
             quit();
         } else if (input.equals("WB") && UserRegistry.getInstance().authenticateLibrarian(currentUser)) {
             whoHasBooks();
+        } else if (input.equals("WM") && UserRegistry.getInstance().authenticateLibrarian(currentUser)) {
+            whoHasMovies();
         } else {
             System.out.println("Invalid menu option");
         }
     }
 
-    private static void whoHasBooks() {
-        List<Book> loanedBooks = library.getLoanedBooks();
+    private static void whoHasMovies() {
+        for (Movie movie : library.getLoanedMovies()) {
+            System.out.println(movie + " : " + movie.loanedTo());
+        }
+    }
 
-        for (Book b : loanedBooks) {
-            System.out.println(b + " : " + b.loanedTo());
+    private static void whoHasBooks() {
+        for (Book book : library.getLoanedBooks()) {
+            System.out.println(book + " : " + book.loanedTo());
         }
     }
 }
