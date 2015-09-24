@@ -35,7 +35,8 @@ public class BibliotecaApp {
         System.out.println("   M  - List all movies");
         System.out.println("   CB - Checkout a book");
         System.out.println("   CM - Checkout a movie");
-        System.out.println("   RB  - Return a book");
+        System.out.println("   RB - Return a book");
+        System.out.println("   L  - Logout");
         System.out.println("   Q  - Quit");
     }
 
@@ -119,28 +120,15 @@ public class BibliotecaApp {
             login();
         }
 
-        String input = "";
         // Display the menu repeatedly
-        while (! input.equals("Q")) {
-            printMenu();
-            System.out.print("Enter Option: ");
-            input = keyboard.next().toUpperCase();
-
-            if (input.toUpperCase().equals("B")) {
-                printAvailableBooks();
-            } else if (input.equals("CB")) {
-                checkoutBook();
-            } else if (input.equals("CM")) {
-                checkoutMovie();
-            } else if (input.equals("RB")) {
-                returnBook();
-            } else if (input.equals("M")) {
-                printAvailableMovies();
-            } else if (! input.equals("Q")) {
-                System.out.println("Invalid menu option.");
+        while (true) {
+            if (currentUser == null) {
+                login();
+            }
+            else {
+                selectMenuOption();
             }
         }
-        quit();
     }
 
     private static void login() {
@@ -157,6 +145,35 @@ public class BibliotecaApp {
         }
         else {
             System.out.println("Login failed");
+        }
+    }
+
+    private static void logout() {
+        currentUser = null;
+        System.out.println("Logged out");
+    }
+
+    private static void selectMenuOption() {
+        printMenu();
+        System.out.print("Enter Option: ");
+        String input = keyboard.next().toUpperCase();
+
+        if (input.toUpperCase().equals("B")) {
+            printAvailableBooks();
+        } else if (input.equals("CB")) {
+            checkoutBook();
+        } else if (input.equals("CM")) {
+            checkoutMovie();
+        } else if (input.equals("RB")) {
+            returnBook();
+        } else if (input.equals("M")) {
+            printAvailableMovies();
+        } else if (input.equals("L")) {
+            logout();
+        } else if (input.equals("Q")) {
+            quit();
+        } else {
+            System.out.println("Invalid menu option");
         }
     }
 }
