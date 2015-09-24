@@ -25,7 +25,11 @@ public class BibliotecaApp {
         library.add(new Movie("Scooby Doo", 2002, "Raja Gosnell", 0));
 
         UserRegistry registry = UserRegistry.getInstance();
-        registry.addUser((new User("123-4567", "password")));
+        User user = new User("123-4567", "password");
+        user.setEmail("test@localhost");
+        user.setPhone("+44 122 1111 444");
+        user.setName("Joe Bloggs");
+        registry.addUser(user);
         registry.addUser((new User("111-1111", "password", true)));
 
     }
@@ -37,6 +41,7 @@ public class BibliotecaApp {
         System.out.println("   CB - Checkout a book");
         System.out.println("   CM - Checkout a movie");
         System.out.println("   RB - Return a book");
+        System.out.println("   I  - See your user information");
         System.out.println("   L  - Logout");
         System.out.println("   Q  - Quit");
 
@@ -146,7 +151,7 @@ public class BibliotecaApp {
 
         User user = new User(libraryNumber, password);
         if (UserRegistry.getInstance().authenticate(user)) {
-            currentUser = user;
+            currentUser = UserRegistry.getInstance().getUser(libraryNumber);
             System.out.println("Login successful");
         }
         else {
@@ -174,6 +179,8 @@ public class BibliotecaApp {
             returnBook();
         } else if (input.equals("M")) {
             printAvailableMovies();
+        } else if (input.equals("I")) {
+            currentUserInfo();
         } else if (input.equals("L")) {
             logout();
         } else if (input.equals("Q")) {
@@ -197,5 +204,12 @@ public class BibliotecaApp {
         for (Book book : library.getLoanedBooks()) {
             System.out.println(book + " : " + book.loanedTo());
         }
+    }
+
+    private static void currentUserInfo() {
+        System.out.println("Name: " + currentUser.getName());
+        System.out.println("Library #: " + currentUser.getLibraryNumber());
+        System.out.println("Email: " + currentUser.getEmail());
+        System.out.println("Phone: " + currentUser.getPhone());
     }
 }

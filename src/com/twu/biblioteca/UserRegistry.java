@@ -44,6 +44,15 @@ public class UserRegistry {
         return (users.containsKey(user.getLibraryNumber()) && users.get(user.getLibraryNumber()).isLibrarian());
     }
 
+    public User getUser(String libraryNumber) {
+        if (!users.containsKey(libraryNumber)) {
+            return null;
+        }
+        else {
+            return users.get(libraryNumber);
+        }
+    }
+
     /**
      * Add a user to the registry
      * @param user The user to be added
