@@ -102,7 +102,5 @@ public class LibraryTest {
 
         assertTrue("Returned movie should be in available movies", library.getAvailableMovies().contains(movie));
         assertFalse("Returned movie should not be in loaned movies", library.getLoanedMovies().contains(movie));
-
-
     }
 }
