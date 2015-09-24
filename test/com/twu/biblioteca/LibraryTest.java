@@ -53,6 +53,8 @@ public class LibraryTest {
             assertEquals(nBooks-1, library.getAvailableBooks().size());
         } catch (StockNotAvailableException e) {
             fail("Book should not initially be checked out");
+        } catch (InvalidLoginException e) {
+            fail(e.getMessage());
         }
     }
 
@@ -63,6 +65,8 @@ public class LibraryTest {
         try {
             book.checkOut(user);
         } catch (StockNotAvailableException e) {
+            fail(e.getMessage());
+        } catch (InvalidLoginException e) {
             fail(e.getMessage());
         }
 
@@ -82,6 +86,8 @@ public class LibraryTest {
         try {
             movie.checkOut(user);
         } catch (StockNotAvailableException e) {
+            fail(e.getMessage());
+        } catch (InvalidLoginException e) {
             fail(e.getMessage());
         }
 

@@ -20,7 +20,13 @@ public abstract class LibraryStock {
      * Check out the stock
      * @throws StockNotAvailableException If book is already checked out
      */
-    public void checkOut(User user) throws StockNotAvailableException {
+    public void checkOut(User user) throws StockNotAvailableException, InvalidLoginException {
+
+        //Check the password and library number match
+        if (! UserRegistry.getInstance().authenticate(user)) {
+            throw new InvalidLoginException();
+        }
+
         if (this.isAvailable()) {
             this.loanedTo = user;
         }
@@ -46,4 +52,5 @@ public abstract class LibraryStock {
     public User loanedTo() {
         return this.loanedTo;
     }
+
 }

@@ -24,6 +24,9 @@ public class BibliotecaApp {
         library.add(new Movie("Sharktopus", 2006, "Declan O'Brien", 1));
         library.add(new Movie("Scooby Doo", 2002, "Raja Gosnell", 0));
 
+        UserRegistry registry = UserRegistry.getInstance();
+        registry.addUser((new User("123-4567", "password")));
+
     }
 
     private static void printMenu() {
@@ -72,6 +75,8 @@ public class BibliotecaApp {
             System.out.println("Thank you! Enjoy the book");
         } catch (StockNotAvailableException e) {
             System.out.println("That book is not available.");
+        } catch (InvalidLoginException e) {
+            System.out.println("Library number and password do not match");
         }
     }
 
@@ -84,6 +89,8 @@ public class BibliotecaApp {
             System.out.println("Thank you! Enjoy the movie");
         } catch (StockNotAvailableException e) {
             System.out.println("That movie is not available");
+        } catch (InvalidLoginException e) {
+            System.out.println("Library number and password do not match");
         }
     }
 
