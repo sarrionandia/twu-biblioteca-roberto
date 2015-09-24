@@ -31,6 +31,11 @@ public class UserRegistry {
      */
     public boolean authenticate(User user) {
         String libraryNumber = user.getLibraryNumber();
+
+        if (! users.containsKey(libraryNumber)) {
+            return false;
+        }
+
         String password = user.getPassword();
         return (users.get(libraryNumber).equals(password));
     }
